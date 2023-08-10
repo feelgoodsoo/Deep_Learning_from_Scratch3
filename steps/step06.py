@@ -1,6 +1,6 @@
 import numpy as np
 
-## 역전파 구현 ##
+## 수동 역전파 구현 ##
 # Variable Class grad 추가
 # Function Class backward 구현
 # Square Class backward 구현
@@ -66,40 +66,4 @@ b.grad = C.backward(y.grad)
 a.grad = B.backward(b.grad)
 x.grad = A.backward(a.grad)
 print(x.grad)
-'''
-
-## 수치 미분 ##
-
-
-def numerical_diff(f, x, eps=1e-4):
-    x0 = Variable(x.data - eps)
-    x1 = Variable(x.data + eps)
-    y0 = f(x0)
-    y1 = f(x1)
-    return (y1.data - y0.data) / (2 * eps)
-
-
-## test example codes ##
-'''
-f = Square()
-x = Variable(np.array(2.0))
-dy = numerical_diff(f, x)
-print(dy)
-'''
-
-## 합성 함수 ##
-
-
-def f(x):
-    A = Square()
-    B = Exp()
-    C = Square()
-    return C(B(A(x)))
-
-
-## text example codes ##
-'''
-x = Variable(np.array(0.5))
-dy = numerical_diff(f, x)
-print(dy)
 '''
