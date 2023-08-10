@@ -1,5 +1,6 @@
 import numpy as np
 
+## 재귀에서 반복문으로 ##
 ## Variable backward 구현 방식 개선 ##
 
 

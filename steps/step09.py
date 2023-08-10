@@ -1,5 +1,7 @@
 import numpy as np
 
+## 함수를 더 편리하게 ##
+
 # square func 생성
 # exp func 생성
 # Variable backward 메서드 간소화

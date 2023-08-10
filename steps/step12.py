@@ -1,5 +1,6 @@
 import numpy as np
 
+## 가변 길이 인수(개선편) ##
 ## Function class 수정 및 Add class 수정 ##
 
 

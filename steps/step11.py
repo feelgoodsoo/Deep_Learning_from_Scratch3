@@ -1,7 +1,8 @@
 import numpy as np
 
-
+## 가변 길이 인수(순전파편) ##
 ## Function class 수정 및 Add class 추가 ##
+
 
 class Variable:
     def __init__(self, data):

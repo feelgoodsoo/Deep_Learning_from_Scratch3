@@ -1,5 +1,6 @@
 import numpy as np
 
+## 함수 구현 ##
 ## Function, Square 구현 ##
 
 

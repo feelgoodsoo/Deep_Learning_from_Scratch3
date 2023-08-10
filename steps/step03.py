@@ -1,6 +1,7 @@
 import numpy as np
 
-## Exp 구현 ##
+## 함수 연결 ##
+# Exp 구현 #
 
 
 class Variable:

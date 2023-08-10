@@ -1,7 +1,7 @@
 import numpy as np
 import unittest
 
-## 테스트 ##
+## 테스트 케이스 구현 ##
 
 
 class Variable:
