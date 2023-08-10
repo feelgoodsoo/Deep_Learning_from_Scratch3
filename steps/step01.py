@@ -1,4 +1,4 @@
-## Variable 구현 ##
+## 변수 Variable 구현 ##
 
 class Variable:
     def __init__(self, data):
