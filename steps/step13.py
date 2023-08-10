@@ -44,14 +44,20 @@ def as_array(x):
 
 
 class Function:
-    def __call__(self, input):
-        x = input.data
-        y = self.forward(x)  # 구체적인 계산은 forward 메서드에서 한다
-        output = Variable(as_array(y))
-        output.set_creator(self)
-        self.input = input  # 입력 변수를 기억(보관)한다
-        self.output = output
-        return output
+    def __call__(self, *inputs):
+        xs = [x.data for x in inputs]
+        ys = self.forward(*xs)  # *로 언팩
+        if not isinstance(ys, tuple):  # 튜플이 아닌 경우 추가 지원
+            ys = (ys, )
+        outputs = [Variable(as_array(y)) for y in ys]
+
+        for output in outputs:
+            output.set_creator(self)
+        self.inputs = inputs
+        self.outputs = outputs
+
+        # 리스트의 원소가 하나라면 첫 번째 원소를 반환한다
+        return outputs if len(outputs) > 1 else outputs[0]
 
     def forward(self, x):
         raise NotImplementedError()
