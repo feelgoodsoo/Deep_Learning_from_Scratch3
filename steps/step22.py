@@ -13,6 +13,8 @@ import contextlib
 
 
 class Variable:
+    __array_priority__ = 200
+
     def __init__(self, data, name=None):
         if data is not None:  # ndarray만 취급하기
             if not isinstance(data, np.ndarray):
@@ -45,7 +47,7 @@ class Variable:
 
         while funcs:
             f = funcs.pop()
-            gys = [output().grad for output in f.ouputs]
+            gys = [output().grad for output in f.outputs]
             gxs = f.backward(*gys)
             if not isinstance(gxs, tuple):
                 gxs = (gxs,)
@@ -56,8 +58,8 @@ class Variable:
                 else:
                     x.grad = x.grad + gx
 
-            if x.creator is not None:
-                add_func(x.creator)
+                if x.creator is not None:
+                    add_func(x.creator)
 
         if not retain_grad:
             for y in f.outputs:
@@ -153,6 +155,9 @@ class Add(Function):
         y = x0 + x1
         return y
 
+    def backward(self, gy):
+        return gy, gy
+
 
 def add(x0, x1):
     x1 = as_array(x1)
@@ -170,6 +175,7 @@ class Mul(Function):
 
 
 def mul(x0, x1):
+    x1 = as_array(x1)
     return Mul()(x0, x1)
 
 
@@ -273,12 +279,17 @@ with no_grad():
 
 
 ## example test codes ##
+Variable.__neg__ = neg
+Variable.__sub__ = sub
+Variable.__rsub__ = rsub
+Variable.__truediv__ = div
+Variable.__rtruediv__ = rdiv
+Variable.__pow__ = pow
+
 x = Variable(np.array(2.0))
 y = -x  # 부호를 바꾼다
 print(y)
 
-Variable.__sub__ = sub
-Variable.__rsub__ = rsub
 
 x = Variable(np.array(2.0))
 y1 = 2.0 - x
@@ -286,9 +297,6 @@ y2 = x - 1.0
 print(y1)
 print(y2)
 
-Variable.__truediv__ = div
-Variable.__rtruediv__ = rdiv
-Variable.__pow__ = pow
 
 x = Variable(np.array(2.0))
 y = x ** 3

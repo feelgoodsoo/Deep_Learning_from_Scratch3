@@ -39,7 +39,7 @@ class Variable:
 
         while funcs:
             f = funcs.pop()
-            gys = [output().grad for output in f.ouputs]
+            gys = [output().grad for output in f.outputs]
             gxs = f.backward(*gys)
             if not isinstance(gxs, tuple):
                 gxs = (gxs,)
@@ -50,8 +50,8 @@ class Variable:
                 else:
                     x.grad = x.grad + gx
 
-            if x.creator is not None:
-                add_func(x.creator)
+                if x.creator is not None:
+                    add_func(x.creator)
 
         if not retain_grad:
             for y in f.outputs:
@@ -140,6 +140,9 @@ class Add(Function):
         y = x0 + x1
         return y
 
+    def backward(self, gy):
+        return gy, gy
+
 
 def add(x0, x1):
     return Add()(x0, x1)
@@ -207,7 +210,7 @@ y = a * b  # __mull__() 호출 -> mul() 호출
 print(y)
 '''
 
-'''
+
 # __mul__ 메서드를 정의하지 않아도 mul, add 함수 호출 가능..
 Variable.__mul__ = mul
 Variable.__add__ = add
@@ -222,4 +225,3 @@ y.backward()
 print(y)
 print(a.grad)
 print(b.grad)
-'''

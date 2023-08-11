@@ -51,7 +51,6 @@ class Exp(Function):
 
 
 ## 역전파 구현 테스트 ##
-'''
 A= Square()
 B = Exp()
 C = Square()
@@ -66,4 +65,4 @@ b.grad = C.backward(y.grad)
 a.grad = B.backward(b.grad)
 x.grad = A.backward(a.grad)
 print(x.grad)
-'''
+

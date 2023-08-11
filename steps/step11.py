@@ -64,10 +64,8 @@ class Add(Function):
 
 
 ## example test codes ##
-'''
-xs = [Variable(np.array(2)), Variable(np.array(3))] # 리스트로 준비
+xs = [Variable(np.array(2)), Variable(np.array(3))]  # 리스트로 준비
 f = Add()
-ys = f(xs) # ys 튜플
+ys = f(xs)  # ys 튜플
 y = ys[0]
 print(y.data)
-'''

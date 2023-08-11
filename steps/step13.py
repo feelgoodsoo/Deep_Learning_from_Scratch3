@@ -9,7 +9,7 @@ class Variable:
     def __init__(self, data):
         if data is not None:  # ndarray만 취급하기
             if not isinstance(data, np.ndarray):
-                raise TypeError('{}은(는) 지원하지 않습니다.', format(type(data)))
+                raise TypeError('{}은(는) 지원하지 않습니다.'.format(type(data)))
 
         self.data = data
         self.grad = None
@@ -25,7 +25,7 @@ class Variable:
         funcs = [self.creator]
         while funcs:
             f = funcs.pop()
-            gys = [output.grad for output in f.ouputs]
+            gys = [output.grad for output in f.outputs]
             gxs = f.backward(*gys)
             if not isinstance(gxs, tuple):
                 gxs = (gxs,)
@@ -33,8 +33,8 @@ class Variable:
             for x, gx in zip(f.inputs, gxs):
                 x.grad = gx
 
-            if x.creator is not None:
-                funcs.append(x.creator)  # 하나 앞의 함수를 리스트에 추가한다
+                if x.creator is not None:
+                    funcs.append(x.creator)  # 하나 앞의 함수를 리스트에 추가한다
 
 
 def as_array(x):
@@ -86,13 +86,15 @@ class Add(Function):
         y = x0 + x1
         return y
 
+    def backward(self, gy):
+        return gy, gy
+
 
 def add(x0, x1):
     return Add()(x0, x1)
 
 
 ## example test codes ##
-'''
 x = Variable(np.array(2.0))
 y = Variable(np.array(3.0))
 
@@ -101,4 +103,3 @@ z.backward()
 print(z.data)
 print(x.grad)
 print(y.grad)
-'''

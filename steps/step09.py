@@ -118,15 +118,16 @@ print(x.grad)
 x = Variable(np.array(1.0))  # OK
 x = Variable(None)  # OK
 x = Variable(1.0)  # NG
+'''
 
-
+'''
 x = np.array([1.0])
 y = x ** 2
 print(type(x), x.ndim)
 print(type(y))
+'''
 
 x = np.array(1.0)  # 0차원 ndarray
 y = x**2
 print(type(x), x.ndim)  # <<class 'numpy.ndarray'> 0
 print(type(y))  # <<class 'numpy.float64' > ==> x**2하면 float64가 되버림
-'''

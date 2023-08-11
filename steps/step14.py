@@ -24,7 +24,7 @@ class Variable:
         funcs = [self.creator]
         while funcs:
             f = funcs.pop()
-            gys = [output.grad for output in f.ouputs]
+            gys = [output.grad for output in f.outputs]
             gxs = f.backward(*gys)
             if not isinstance(gxs, tuple):
                 gxs = (gxs,)
@@ -35,8 +35,8 @@ class Variable:
                 else:
                     x.grad = x.grad + gx
 
-            if x.creator is not None:
-                funcs.append(x.creator)  # 하나 앞의 함수를 리스트에 추가한다
+                if x.creator is not None:
+                    funcs.append(x.creator)  # 하나 앞의 함수를 리스트에 추가한다
 
     def cleargrad(self):
         self.grad = None
@@ -91,6 +91,9 @@ class Add(Function):
         y = x0 + x1
         return y
 
+    def backward(self, gy):
+        return gy, gy
+
 
 def add(x0, x1):
     return Add()(x0, x1)
@@ -106,7 +109,7 @@ y.backward()
 print('x.grad', x.grad)
 '''
 
-'''
+
 # 첫번째 계산
 x = Variable(np.array(3.0))
 y = add(x, x)
@@ -117,4 +120,3 @@ print(x.grad)
 y = add(add(x, x), x)
 y.backward()
 print(x.grad)
-'''

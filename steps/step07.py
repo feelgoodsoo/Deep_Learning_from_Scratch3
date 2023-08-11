@@ -62,7 +62,6 @@ class Exp(Function):
         return gx
 
 
-'''
 ## test Example Codes ##
 A = Square()
 B = Exp()
@@ -74,13 +73,14 @@ b = B(a)
 y = C(b)
 
 # 계산 그래프의 노드들을 거꾸로 거슬러 올라간다
+'''
 assert y.creator == C
 assert y.creator.input == b
 assert y.creator.input.creator == B
 assert y.creator.input.creator.input == a
 assert y.creator.input.creator.input.creator == A
 assert y.creator.input.creator.input.creator.input == x
-
+'''
 
 ## 역전파 도전 ##
 y.grad = np.array(1.0)
@@ -114,4 +114,3 @@ y = C(b)
 y.grad = np.array(1.0)
 y.backward()
 print(x.grad)
-'''

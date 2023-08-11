@@ -71,9 +71,7 @@ def add(x0, x1):
 
 
 ## example test codes ##
-'''
 x0 = Variable(np.array(2))
 x1 = Variable(np.array(3))
-y = add(x0, x1) # Add 클래스 생성 과정 추상화
+y = add(x0, x1)  # Add 클래스 생성 과정 추상화
 print(y.data)
-'''

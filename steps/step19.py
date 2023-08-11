@@ -39,7 +39,7 @@ class Variable:
 
         while funcs:
             f = funcs.pop()
-            gys = [output().grad for output in f.ouputs]
+            gys = [output().grad for output in f.outputs]
             gxs = f.backward(*gys)
             if not isinstance(gxs, tuple):
                 gxs = (gxs,)
@@ -50,8 +50,8 @@ class Variable:
                 else:
                     x.grad = x.grad + gx
 
-            if x.creator is not None:
-                add_func(x.creator)
+                if x.creator is not None:
+                    add_func(x.creator)
 
         if not retain_grad:
             for y in f.outputs:
@@ -137,6 +137,9 @@ class Add(Function):
         y = x0 + x1
         return y
 
+    def backward(self, gy):
+        return gy, gy
+
 
 def add(x0, x1):
     return Add()(x0, x1)
@@ -174,3 +177,4 @@ with no_grad():
 x = Variable(np.array([[1, 2, 3], [4, 5, 6]]))
 print(x.shape)  # x.shape() 대신 x.shape로 호출 가능
 print(len(x))
+print(x)

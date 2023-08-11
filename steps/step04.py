@@ -59,8 +59,6 @@ def f(x):
 
 
 ## text example codes ##
-'''
 x = Variable(np.array(0.5))
 dy = numerical_diff(f, x)
 print(dy)
-'''

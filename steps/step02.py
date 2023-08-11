@@ -25,12 +25,10 @@ class Square(Function):
         return x ** 2
 
 
-'''
 ## Example Test Codes ##
 x = Variable(np.array(10))
-f = Function()
+f = Square()
 y = f(x)
 
 print(type(y))
 print(y.data)
-'''

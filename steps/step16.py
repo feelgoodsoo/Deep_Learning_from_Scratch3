@@ -37,7 +37,7 @@ class Variable:
 
         while funcs:
             f = funcs.pop()
-            gys = [output.grad for output in f.ouputs]
+            gys = [output.grad for output in f.outputs]
             gxs = f.backward(*gys)
             if not isinstance(gxs, tuple):
                 gxs = (gxs,)
@@ -48,8 +48,8 @@ class Variable:
                 else:
                     x.grad = x.grad + gx
 
-            if x.creator is not None:
-                add_func(x.creator)
+                if x.creator is not None:
+                    add_func(x.creator)
 
     def cleargrad(self):
         self.grad = None
@@ -105,6 +105,9 @@ class Add(Function):
         y = x0 + x1
         return y
 
+    def backward(self, gy):
+        return gy, gy
+
 
 def add(x0, x1):
     return Add()(x0, x1)
@@ -129,12 +132,11 @@ f = funcs.pop()  # 가장 큰 값 꺼낸다
 print(f.generation)
 '''
 
-'''
+
 x = Variable(np.array(2.0))
-a = Square(x)
+a = square(x)
 y = add(square(a), square(a))
 y.backward()
 
 print(y.data)
 print(x.grad)
-'''

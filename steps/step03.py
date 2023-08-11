@@ -31,11 +31,7 @@ class Exp(Function):
         return np.exp(x)
 
 
-'''
 ## example test Codes ##
-import Square
-import Variable
-
 A = Square()
 B = Exp()
 C = Square()
@@ -45,4 +41,3 @@ a = A(x)
 b = B(a)
 y = C(b)
 print(y.data)
-'''
