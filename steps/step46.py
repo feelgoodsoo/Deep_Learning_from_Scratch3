@@ -10,7 +10,7 @@ from dezero.models import MLP
 
 ## Optimizer로 수행하는 매개변수 갱신 ##
 
-# dezero/optimizers.py 생성
+# dezero/optimizers.py 생성 및 SGD, MomentumSGD 구현
 
 # 데이터셋
 np.random.seed(0)

@@ -35,6 +35,7 @@ class SGD(Optimizer):
         self.lr = lr
 
     def update_one(self, param):
+        # print("param.grad.data: ", param.gard.data)
         param.data -= self.lr * param.grad.data
 
 

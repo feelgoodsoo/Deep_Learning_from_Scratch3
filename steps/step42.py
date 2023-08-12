@@ -44,7 +44,7 @@ for i in range(iters):
 
     W.data -= lr * W.grad.data
     b.data -= lr * b.grad.data
-    print(W, b, loss)
+    print(W, b, loss, W.grad.data, b.grad.data)
 
 
 # Plot

@@ -12,9 +12,9 @@ from dezero.models import MLP
 # 다중 클래스 분류 도전 #
 
 # dezero/functions.py get_item 구현
-# -> core.py의 setupVariable 추가
+# -> core.py의 setupVariable 추가 (__get__item)
 # dezero/functions.py softmax_simple, softmax_corss_entropy_simple 구현
-# log, clip 구현
+# dezero/functions.py log, clip 구현
 
 np.random.seed(0)
 

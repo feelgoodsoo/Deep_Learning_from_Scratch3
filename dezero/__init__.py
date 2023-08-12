@@ -20,5 +20,5 @@ else:
     from dezero import functions
     from dezero.layers import Layer
     from dezero.models import Model
-
+    from dezero import datasets
 setup_variable()

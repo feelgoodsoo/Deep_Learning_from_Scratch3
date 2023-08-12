@@ -19,7 +19,7 @@ y = np.sin(2 * np.pi * x) + np.random.rand(100, 1)
 
 # 하이퍼파라미터 설정
 lr = 0.2
-max_iter = 10000
+max_iter = 1000
 hidden_size = 10
 
 # 모델 정의
@@ -49,5 +49,5 @@ for i in range(max_iter):
 
     for p in model.params():
         p.data -= lr * p.grad.data
-    if i % 1000 == 0:
+    if i % 100 == 0:
         print("loss: ", loss)
