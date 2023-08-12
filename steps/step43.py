@@ -10,7 +10,7 @@ import dezero.functions as F
 ## 신경망 ##
 
 # 신경망의 기본 계산 -> y = F.matmul(x, W) + b
-# dezero/functions.py linear, sigmoid 함수 구현
+# dezero/functions.py linear_simple, sigmoid 함수 구현
 # dezero/functions.py exp도 추가됨..
 
 
@@ -33,9 +33,9 @@ b2 = Variable(np.zeros(O))
 
 
 def predict(x):
-    y = F.linear(x, W1, b1)
-    y = F.sigmoid(y)
-    y = F.linear(y, W2, b2)
+    y = F.linear_simple(x, W1, b1)
+    y = F.sigmoid_simple(y)
+    y = F.linear_simple(y, W2, b2)
     return y
 
 

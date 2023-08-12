@@ -175,7 +175,7 @@ class MeanSquaredError(Function):
 def mean_squared_error(x0, x1):
     return MeanSquaredError()(x0,x1)
 
-def linear(x, W, b=None):
+def linear_simple(x, W, b=None):
     t = matmul(x, W)
     if b is None:
         return t
@@ -184,7 +184,7 @@ def linear(x, W, b=None):
     t.data = None # t의 데이터 삭제
     return y
 
-def sigmoid(x):
+def sigmoid_simple(x):
     x = as_variable(x)
     y = 1 / (1 + exp(-x))
     return y

@@ -289,6 +289,10 @@ def pow(x, c):
     return Pow(c)(x)
 
 
+class Parameter(Variable):
+    pass
+
+
 def setup_variable():
     Variable.__add__ = add
     Variable.__radd__ = add
