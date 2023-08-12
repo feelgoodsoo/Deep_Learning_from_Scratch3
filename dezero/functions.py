@@ -44,6 +44,19 @@ class Tanh(Function):
 def tanh(x):
     return Tanh()(x)
 
+class Exp(Function):
+    def forward(self, x):
+        # e는 자연로그의 밑으로 구체적인 값은 2.718... (오일러 상수 혹은 네이피어 상수라고 불림)
+        y = np.exp(x)
+        return y
+
+    def backward(self, gy):
+        y = self.outputs[0]()  # weakref
+        gx = gy * y
+        return gx
+    
+def exp(x):
+    return Exp()(x)
 
 class Reshape(Function):
     def __init__(self, shape):
@@ -132,4 +145,46 @@ def broadcast_to(x, shape):
         return as_variable(x)
     return BroadcastTo(shape)(x)
 
+class MatMul(Function):
+    def forward(self, x, W):
+        y = x.dot(W)
+        return y
 
+    def backward(self, gy):
+        x, W = self.inputs
+        gx = matmul(gy, W.T)
+        gW = matmul(x.T, gy)
+        return gx, gW
+
+def matmul(x, W):
+    return MatMul()(x, W)
+
+class MeanSquaredError(Function):
+    def forward(self, x0, x1):
+        diff = x0 - x1
+        y = (diff ** 2).sum() / len(diff)
+        return y
+    
+    def backward(self, gy):
+        x0, x1 = self.inputs
+        diff = x0 - x1
+        gx0 = gy * diff * (2. / len(diff))
+        gx1 = -gx0
+        return gx0, gx1
+    
+def mean_squared_error(x0, x1):
+    return MeanSquaredError()(x0,x1)
+
+def linear(x, W, b=None):
+    t = matmul(x, W)
+    if b is None:
+        return t
+    
+    y = t + b
+    t.data = None # t의 데이터 삭제
+    return y
+
+def sigmoid(x):
+    x = as_variable(x)
+    y = 1 / (1 + exp(-x))
+    return y

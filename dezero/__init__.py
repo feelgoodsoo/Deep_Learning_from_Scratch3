@@ -18,10 +18,5 @@ else:
     from dezero.core import as_variable
     from dezero.core import setup_variable
     from dezero import functions
-    # from dezero.functions import reshape
-    # from dezero.functions import transpose
-    # from dezero.functions import sum
-    # from dezero.functions import sum_to
-    # from dezero.functions import broadcast_to
 
 setup_variable()
