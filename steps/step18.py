@@ -10,7 +10,7 @@ class Variable:
     def __init__(self, data):
         if data is not None:  # ndarray만 취급하기
             if not isinstance(data, np.ndarray):
-                raise TypeError('{}은(는) 지원하지 않습니다.', format(type(data)))
+                raise TypeError("{}은(는) 지원하지 않습니다.", format(type(data)))
 
         self.data = data
         self.grad = None
@@ -71,7 +71,7 @@ class Function:
         xs = [x.data for x in inputs]
         ys = self.forward(*xs)  # *로 언팩
         if not isinstance(ys, tuple):  # 튜플이 아닌 경우 추가 지원
-            ys = (ys, )
+            ys = (ys,)
         outputs = [Variable(as_array(y)) for y in ys]
 
         if Config.enable_backprop:
@@ -93,7 +93,7 @@ class Function:
 
 class Square(Function):
     def forward(self, x):
-        return x ** 2
+        return x**2
 
     def backward(self, gy):
         x = self.inputs[0].data
@@ -134,10 +134,10 @@ def using_config(name, value):
 
 
 def no_grad():
-    return using_config('enable_backprop', False)
+    return using_config("enable_backprop", False)
 
 
-with using_config('enable_backprop', False):
+with using_config("enable_backprop", False):
     x = Variable(np.array(2.0))
     y = square(x)
 
@@ -147,7 +147,7 @@ with no_grad():
 
 
 ## example test codes ##
-'''
+"""
 x0 = Variable(np.array(1.0))
 x1 = Variable(np.array(1.0))
 t = add(x0, x1)
@@ -156,9 +156,9 @@ y.backward()
 
 print(y.grad, t.grad)
 print(x0.grad, x1.grad)
-'''
+"""
 
-'''
+"""
 Config.enable_backprop= True
 x = Variable(np.ones(100,100,100))
 y = square(square(x))
@@ -167,15 +167,15 @@ y.backward()
 Config.enable_backprop = False
 x = Variable(np.ones(100,100,100))
 y = square(square(square(x)))
-'''
+"""
 
-'''
+"""
 f = open('sample.txt', 'w')
 f.write('hello world')
 f.close()
-'''
+"""
 
-'''
+"""
 with open('sample.txt', 'w') as f:
     f.write('hello world')
-'''
+"""

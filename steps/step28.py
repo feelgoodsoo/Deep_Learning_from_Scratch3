@@ -1,16 +1,18 @@
-if '__file__' in globals():
+if "__file__" in globals():
     import os
     import sys
-    sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-## 로젠브록 함수 ##
+    sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+
+## 함수 최적화 ##
+## 로젠브록 함수로 구현해보기 ##
 
 import numpy as np
 from dezero import Variable
 
 
 def rosenbrock(x0, x1):
-    y = 100 * (x1 - x0 ** 2) ** 2 + (1 - x0) ** 2
+    y = 100 * (x1 - x0**2) ** 2 + (1 - x0) ** 2
     return y
 
 
