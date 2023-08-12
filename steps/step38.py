@@ -16,7 +16,8 @@ y = F.reshape(x, (6,))
 y.backward(retain_grad=True)
 print(x.grad)
 
+
 x = Variable(np.array([[1, 2, 3], [4, 5, 6]]))
-y = F.transpose(x, (6,))
+y = F.transpose(x)
 y.backward(retain_grad=True)
 print(x.grad)
