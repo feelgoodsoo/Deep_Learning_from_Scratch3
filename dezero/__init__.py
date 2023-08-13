@@ -26,4 +26,7 @@ else:
     from dezero.core import Config
     from dezero.core import *
     from dezero import optimizers
+    from dezero import layers
+    from dezero import dataloaders
+
 setup_variable()
