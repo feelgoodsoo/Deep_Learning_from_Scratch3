@@ -9,3 +9,4 @@ import dezero.functions as F
 ## Dataset class와 전처리 ##
 
 ## dezero/datasets.py 보충 ##
+# dezero/transforms.py 추가

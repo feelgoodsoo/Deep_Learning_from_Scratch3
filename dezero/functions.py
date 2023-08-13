@@ -1,10 +1,12 @@
 import numpy as np
 from dezero.core import Function, Variable, as_variable, as_array
 from dezero import utils
+from dezero import cuda
 
 class Sin(Function):
     def forward(self, x):
-        y = np.sin(x)
+        xp = cuda.get_array_module(x)
+        y = xp.sin(x)
         return y
 
     def backward(self, gy):
@@ -367,3 +369,17 @@ def accuracy(y, t):
     result = (pred == t.data)
     acc = result.mean()
     return Variable(as_array(acc))
+
+class ReLU(Function):
+    def forward(self, x):
+        y = np.maximum(x, 0.0)
+        return y
+    
+    def backward(self, gy):
+        x, = self.inputs
+        mask = x.data > 0
+        gx = gy * mask
+        return gx
+
+def relu(x):
+    return ReLU()(x)
