@@ -9,6 +9,7 @@ from dezero import Variable
 
 # 원래 broadcast_to, sum_to를 현재 챕터에서 구현하기로 되어있었는데 step39에서 땡겨썻기에 이전 챕터에서 대부분 구현하고
 # dezero/core.py의 Add class만 살짝 손볼 것이다..
+# broadcast_to -> 원소 복사
 # ** dezero/utils.py에 sum_to 함수 추가.. (np 대응용.. )
 
 '''

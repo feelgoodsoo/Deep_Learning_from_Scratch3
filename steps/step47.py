@@ -11,6 +11,9 @@ from dezero.models import MLP
 
 # 다중 클래스 분류 도전 #
 
+# 다중 클래스 분류에서 사용되는 손실 함수는 교차 엔트로피 오차(cross-entroy-error)이다
+# 교차 엔트로피 오차를 표현하기 위해 원핫 벡터(one-hot-vector) 방식을 이용한다
+
 # dezero/functions.py get_item 구현
 # -> core.py의 setupVariable 추가 (__get__item)
 # dezero/functions.py softmax_simple, softmax_corss_entropy_simple 구현

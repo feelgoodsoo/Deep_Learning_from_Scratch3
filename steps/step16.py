@@ -27,7 +27,7 @@ class Variable:
         funcs = []
         seen_set = set()
 
-        def add_func(f):
+        def add_func(f):    # 함수 리스트를 세대 순으로 정렬
             if f not in seen_set:
                 funcs.append(f)
                 seen_set.add(f)

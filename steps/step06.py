@@ -1,6 +1,8 @@
 import numpy as np
 
 ## 수동 역전파 구현 ##
+# 역전파 메서드는 backward이다 #
+
 # Variable Class grad 추가
 # Function Class backward 구현
 # Square Class backward 구현

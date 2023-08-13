@@ -9,6 +9,9 @@ import dezero.layers as L
 
 ## 매개변수를 모아두는 계층 ##
 
+# 매개변수의 기울기를 재설정할 때 수동으로 코드를 작성해야 했음
+# 매개변수 관리 자동화를 위해 Parameter, Layer class 생성
+
 # dezero/core.py class Parameter 작성
 # dezero/layers.py  Layer class 생성
 # dezerp/layers.py  Linear 클래스 구현

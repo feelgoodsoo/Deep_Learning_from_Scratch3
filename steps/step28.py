@@ -6,6 +6,7 @@ if "__file__" in globals():
 
 ## 함수 최적화 ##
 ## 로젠브록 함수로 구현해보기 ##
+# 로젠 브록 함수 수식 -> y=100(x1-x0^2)^2 + (1-x0)^2
 
 import numpy as np
 from dezero import Variable

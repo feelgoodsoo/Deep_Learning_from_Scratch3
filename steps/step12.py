@@ -38,7 +38,7 @@ def as_array(x):
 
 
 class Function:
-    def __call__(self, *inputs):
+    def __call__(self, *inputs):    # 리스트가 아닌 튜플을 입력으로 받는다
         xs = [x.data for x in inputs]
         ys = self.forward(*xs)  # *로 언팩
         if not isinstance(ys, tuple):  # 튜플이 아닌 경우 추가 지원

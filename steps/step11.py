@@ -39,12 +39,12 @@ def as_array(x):
 
 class Function:
     def __call__(self, inputs):
-        xs = [x.data for x in inputs]
-        ys = self.forward(xs)
-        outputs = [Variable(as_array(y)) for y in ys]
+        xs = [x.data for x in inputs]   # 입력 매개변수를 단일 인수에서 다중 인수로 변경
+        ys = self.forward(xs)            # 순전파 계산 진행
+        outputs = [Variable(as_array(y)) for y in ys]  # 위의 계산 결과를 Variable에 입력
 
         for output in outputs:
-            output.set_creator(self)
+            output.set_creator(self)  # output의 set_creator 속성에 위의 결과들을 저장
         self.inputs = inputs
         self.outputs = outputs
         return outputs
@@ -60,7 +60,7 @@ class Add(Function):
     def forward(self, xs):
         x0, x1 = xs
         y = x0 + x1
-        return (y, )
+        return (y, )  # 리스트를 언패킹해서 return
 
 
 ## example test codes ##

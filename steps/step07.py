@@ -1,6 +1,8 @@
 import numpy as np
 
 ## 역전파 자동화 ##
+# Define-by-Run 방식 구현 #
+# Define-by-Run이란 수행하는 계산들을 계산 시점에 '연결'하는 방식, '동적 계산 그래프'라고도 불림
 # Variable set_creator 추가
 # Function output 추가
 # Variable backward 추가

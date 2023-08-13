@@ -6,6 +6,14 @@ if '__file__' in globals():
     sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 ## 테일러 급수 미분 ##
+
+# 테일러 급수란 어떤 함수를 다항식으로 근사하는 방법 #
+# 1차 미분 + 2차 미분.. + n차 미분까지의 값 근사 가능
+# -> f(x) = f(a) + f'(a)(x-a) + 1/2! * f''(a)(x-a)^2 + 1/3! * f'''(a)(x-a)^3 ...
+# 위의 수식에서 !는 factorial
+
+# a=0일 때의 테일러 급수를 매클로린 전개(Maclaurin's series)라고 함
+
 # sin 함수 구현 #
 
 import numpy as np

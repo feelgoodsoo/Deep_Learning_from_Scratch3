@@ -7,6 +7,9 @@ import dezero.functions as F
 from dezero.core import Variable
 
 ## conv2d 함수와 pooling 함수 ##
+
+# im2col -> 입력 데이터를 한 줄로 '전개'하는 함수
+
 # dezero/functions_conv.py im2col, col2dim 모듈들, conv2d_simple 구현 ( conv2d도 추가 )
 # dezero/functions.py 하단의 import 추가
 # dezero/layers.py Conv2d 구현

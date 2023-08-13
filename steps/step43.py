@@ -10,6 +10,12 @@ import dezero.functions as F
 ## 신경망 ##
 
 # 신경망의 기본 계산 -> y = F.matmul(x, W) + b
+# 비선형 데이터셋의 문제를 선형 회귀로는 풀 수 없기 때문에 신경망을 도입하여야 한다
+# 신경망은 선형 변환의 출력에 비선형 변환을 수행한다
+# 비선형 변환을 활성화 함수(activation function)라고 부른다
+# 대표적으로 reLU, sigmoid 등이 있다
+# 일반적인 신경망은 선형 변환 -> 활성화 함수 -> 선형 변환 -> 활성화 함수가 반복되는 형태다
+
 # dezero/functions.py linear_simple, sigmoid 함수 구현
 # dezero/functions.py exp도 추가됨..
 

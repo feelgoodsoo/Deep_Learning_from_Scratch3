@@ -16,6 +16,8 @@ import matplotlib.pyplot as plt
 # dezero/datasets.py SinCurve class 추가 #
 # dezero/optimizers.py Adam 추가 #
 
+# BPTT = BackPropagation Through Time -> 일련의 입력 데이터로 구성된 계산 그래프에서의 역전파..
+
 
 class SimpleRNN(Model):
     def __init__(self, hidden_size, out_size):
