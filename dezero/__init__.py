@@ -25,4 +25,5 @@ else:
     from dezero import cuda
     from dezero.core import Config
     from dezero.core import *
+    from dezero import *
 setup_variable()
