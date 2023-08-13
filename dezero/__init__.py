@@ -23,4 +23,6 @@ else:
     from dezero import datasets
     from dezero.dataloaders import DataLoader
     from dezero import cuda
+    from dezero.core import Config
+    from dezero.core import *
 setup_variable()
