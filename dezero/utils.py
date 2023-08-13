@@ -215,3 +215,7 @@ def show_progress(block_num, block_size, total_size):
 
 def get_conv_outsize(input_size, kernal_size, stride, pad):
     return (input_size + pad * 2 - kernal_size) // stride + 1  # // -> 몫 연산자
+
+
+def get_deconv_outsize(size, k, s, p):
+    return s * (size - 1) + k - 2 * p

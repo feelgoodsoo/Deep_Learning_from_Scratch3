@@ -7,6 +7,8 @@ import dezero.functions as F
 
 ## CNN 메커니즘(1) ##
 
+# dezero/utils.py 에 아래 함수 추가
+
 
 def get_conv_outsize(input_size, kernal_size, stride, pad):
     return (input_size + pad * 2 - kernal_size) // stride + 1  # // -> 몫 연산자

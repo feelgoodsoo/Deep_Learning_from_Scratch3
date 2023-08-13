@@ -79,16 +79,24 @@ def reshape(x, shape):
     return Reshape(shape)(x)
 
 class Transpose(Function):
+    def __init__(self, axes=None):
+        self.axes = axes
+
     def forward(self, x):
-        y = np.transpose(x)
+        y = x.transpose(self.axes)
         return y
-    
+
     def backward(self, gy):
-        gx = transpose(gy)
-        return gx
-    
-def transpose(x):
-    return Transpose()(x)
+        if self.axes is None:
+            return transpose(gy)
+
+        axes_len = len(self.axes)
+        inv_axes = tuple(np.argsort([ax % axes_len for ax in self.axes]))
+        return transpose(gy, inv_axes)
+
+
+def transpose(x, axes=None):
+    return Transpose(axes)(x)
 
 
 class Sum(Function):
@@ -177,6 +185,24 @@ class MeanSquaredError(Function):
     
 def mean_squared_error(x0, x1):
     return MeanSquaredError()(x0,x1)
+
+class Linear(Function):
+    def forward(self, x, W, b):
+        y = x.dot(W)
+        if b is not None:
+            y += b
+        return y
+
+    def backward(self, gy):
+        x, W, b = self.inputs
+        gb = None if b.data is None else sum_to(gy, b.shape)
+        gx = matmul(gy, W.T)
+        gW = matmul(x.T, gy)
+        return gx, gW, gb
+
+
+def linear(x, W, b=None):
+    return Linear()(x, W, b)
 
 def linear_simple(x, W, b=None):
     t = matmul(x, W)
@@ -396,3 +422,23 @@ def dropout(x, dropout_ratio=0.5):
         return y
     else:
         return x
+    
+    
+    # =============================================================================
+# conv2d / col2im / im2col / basic_math
+# =============================================================================
+#from dezero.functions_conv import conv2d
+#from dezero.functions_conv import deconv2d
+from dezero.functions_conv import conv2d_simple
+from dezero.functions_conv import im2col
+from dezero.functions_conv import col2im
+#from dezero.functions_conv import pooling_simple
+#from dezero.functions_conv import pooling
+#from dezero.functions_conv import average_pooling
+from dezero.core import add
+from dezero.core import sub
+from dezero.core import rsub
+from dezero.core import mul
+from dezero.core import div
+from dezero.core import neg
+from dezero.core import pow
