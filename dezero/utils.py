@@ -211,3 +211,7 @@ def show_progress(block_num, block_size, total_size):
         i = 30
     bar = "#" * i + "." * (30 - i)
     print(bar_template.format(bar, p), end='')
+
+
+def get_conv_outsize(input_size, kernal_size, stride, pad):
+    return (input_size + pad * 2 - kernal_size) // stride + 1  # // -> 몫 연산자
