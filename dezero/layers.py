@@ -108,7 +108,7 @@ class Linear(Layer):
             self.in_size = x.shape[1]
             self._init_W()
 
-        y = F.linear_simple(x, self.W, self.b)
+        y = F.linear(x, self.W, self.b)
         return y
 
 
@@ -148,3 +148,22 @@ class Conv2d(Layer):
         y = F.conv2d_simple(x, self.W, self.b, self.stride, self.pad)
 
         return y
+
+
+class RNN(Layer):
+    def __init__(self, hidden_size, in_size=None):
+        super().__init__()
+        self.x2h = Linear(hidden_size, in_size=in_size)
+        self.h2h = Linear(hidden_size, in_size=in_size, nobias=True)
+        self.h = None
+
+    def reset_state(self):
+        self.h = None
+
+    def forward(self, x):
+        if self.h is None:
+            h_new = F.tanh(self.x2h(x))
+        else:
+            h_new = F.tanh(self.x2h(x) + self.h2h(self.h))
+        self.h = h_new
+        return h_new
