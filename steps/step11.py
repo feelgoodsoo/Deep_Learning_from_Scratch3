@@ -60,7 +60,7 @@ class Add(Function):
     def forward(self, xs):
         x0, x1 = xs
         y = x0 + x1
-        return (y, )  # 리스트를 언패킹해서 return
+        return (y, )  # 튜플 반환
 
 
 ## example test codes ##

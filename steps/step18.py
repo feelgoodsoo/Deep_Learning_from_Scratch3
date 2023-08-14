@@ -21,7 +21,7 @@ class Variable:
         self.creator = func
         self.generation = func.generation + 1  # 세대를 기록한다(부모 세대 + 1 )
 
-    def backward(self, retain_grad=False):
+    def backward(self, retain_grad=False): #retain_grad로 불필요한 미분값 삭제
         if self.grad is None:
             self.grad = np.ones_like(self.data)
 
@@ -118,7 +118,7 @@ class Add(Function):
 def add(x0, x1):
     return Add()(x0, x1)
 
-
+# 역전파 활성화/비활성화 모드 생성
 class Config:
     enable_backprop = True
 
@@ -136,7 +136,7 @@ def using_config(name, value):
 def no_grad():
     return using_config("enable_backprop", False)
 
-
+# with문으로 후처리 자동화
 with using_config("enable_backprop", False):
     x = Variable(np.array(2.0))
     y = square(x)

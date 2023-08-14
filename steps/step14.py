@@ -38,7 +38,7 @@ class Variable:
                 if x.creator is not None:
                     funcs.append(x.creator)  # 하나 앞의 함수를 리스트에 추가한다
 
-    def cleargrad(self):
+    def cleargrad(self): # 미분값 초기화
         self.grad = None
 
 

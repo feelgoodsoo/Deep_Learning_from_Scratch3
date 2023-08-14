@@ -10,7 +10,7 @@ import numpy as np
 
 # 순환 참조 문제를 해결하기 위해 Function, Varialbe 수정
 
-import weakref
+import weakref # 약한 참조를 생성함. 약한 참조란 다른 객체를 참조하되 참조 카운트는 증가시키지 않는 기능
 
 
 class Variable:

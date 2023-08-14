@@ -25,12 +25,12 @@ class Variable:
         funcs = [self.creator]
         while funcs:
             f = funcs.pop()
-            gys = [output.grad for output in f.outputs]
-            gxs = f.backward(*gys)
-            if not isinstance(gxs, tuple):
+            gys = [output.grad for output in f.outputs] # 미분값들을 리스트에 보관
+            gxs = f.backward(*gys)  # 힘수 f 역전파 호출
+            if not isinstance(gxs, tuple): # gxs가 튜플 아니면 튜플로 반환
                 gxs = (gxs,)
 
-            for x, gx in zip(f.inputs, gxs):
+            for x, gx in zip(f.inputs, gxs): # 역전파로 전파되는 미분 값을 Variable의 인스턴스 변수 grad에 저장
                 x.grad = gx
 
                 if x.creator is not None:

@@ -4,7 +4,7 @@ import contextlib
 
 ## 연산자 오버로드(2) ##
 # as_variable 추가
-# Function class tnwjd
+# Function class 생성
 
 
 class Variable:

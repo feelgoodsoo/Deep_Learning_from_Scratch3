@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 # dezero/optimizers.py Adam 추가 #
 
 # BPTT = BackPropagation Through Time -> 일련의 입력 데이터로 구성된 계산 그래프에서의 역전파..
-
+# Truncated BPTT = 계산 그래프를 적당한 길이에서 끊어준다
 
 class SimpleRNN(Model):
     def __init__(self, hidden_size, out_size):
